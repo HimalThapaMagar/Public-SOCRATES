@@ -1,0 +1,19 @@
+01 : Starting from scratch so deleting the old ones code.
+
+02: everything works so now I am trying to add the actual code to do CRUD here in the db
+
+03. Now let's see about the location so integrating code from argus project to see if it can be ported over or not?
+    okay, the location tracking is only working when user stays in home page and not in other pages? why is that investigating on it..... now... 
+
+    deleting the old argus project from this to start over new argus protocol Arugus Version 2 I guess.
+
+04. Trying to integrate watchtower into the mix for now in the data addition page to see if it going to work or not. still need to test this
+
+05. Changing the schema design for now to accomodate new design of schema of db for now. Done deal ....
+
+06 changing the schema for the collected information again for now to accomodate to new data layout... fkkkkkkkkk the test data..... finally resolved done deal...
+    fkkkkk..... again changing the goddamn schema design now........
+
+07. Yeaaaaaa all bigger things are done for now, now I think I am going to improve UI or something.....
+
+08. fkkkkkk last minute addition to the collectedinformation is geofenceRef.... done.
