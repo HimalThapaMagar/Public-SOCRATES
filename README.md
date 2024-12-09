@@ -1,16 +1,101 @@
-# socrates
+# Project SOCRATES
 
-A new Flutter project.
+A Flutter-based mobile application that supports real-time geofencing, user authentication, and data collection, designed to provide seamless functionality with intuitive features.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Authentication**: Secure login and registration using Firebase Authentication.
+- **Geofencing**: Dynamically check user location within predefined boundaries.
+- **Real-time Database**: Store and fetch data using Firebase Firestore.
+- **Dark Mode**: Mobile app supports dark mode for better usability.
+- **Releases**: Automatically publish APK files to a public repository as GitHub Releases.
 
-A few resources to get you started if this is your first Flutter project:
+## Tools and Technologies
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Frontend**: Flutter, Dart
+- **Backend**: Firebase Firestore, Firebase Authentication
+- **Version Control**: Git, GitHub
+- **Build System**: GitHub Actions
+- **Design**: Adobe Illustrator
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation
+
+Follow these steps to set up the project locally:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/HimalThapaMagar/Public-SOCRATES.git
+   cd socrates
+   ```
+
+2. **Install Flutter Dependencies**:
+   ```bash
+   flutter pub get
+   ```
+
+3. **Configure Firebase**:
+   - Add your `google-services.json` (for Android) and `GoogleService-Info.plist` (for iOS) files to the respective directories.
+   - Ensure `firebase_options.dart` is generated locally using `flutterfire configure`.
+
+4. **Run the App**:
+   ```bash
+   flutter run
+   ```
+
+## Usage
+
+### Building the APK
+
+To build the release APK, run:
+```bash
+flutter build apk --release
+```
+The generated APK will be located in `build/app/outputs/flutter-apk/`.
+
+### Automating GitHub Releases
+
+This project is configured to automatically:
+
+1. Build the APK using GitHub Actions.
+2. Upload the APK to a public repository as a GitHub Release.
+
+Ensure you have:
+- A public repository to host the APK.
+- A `PUBLIC_REPO_TOKEN` secret set up in your private repository.
+
+## Folder Structure
+
+```plaintext
+lib/
+├── main.dart           # Entry point of the application
+├── firebase_options.dart # Firebase configuration (local only)
+├── pages/
+│   ├── add_data_page.dart  # Handles data input and geofence addition
+│   └── ...                # Other app pages
+├── services/
+│   ├── geofence_service.dart # Geofence logic and validations
+│   └── ...                  # Other services
+build/                     # APK and build artifacts
+``` 
+
+## Testing
+
+Manual testing was employed to validate:
+- UI/UX functionality across modules.
+- Geofencing logic and accuracy.
+- Firebase integration for data storage and authentication.
+
+Automated testing is planned for future iterations.
+
+## Future Improvements
+
+- Implement automated testing for geofencing and Firebase integrations.
+- Optimize APK release workflow for faster deployments.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contributing
+
+We welcome contributions! Please fork the repository and submit a pull request for review.
