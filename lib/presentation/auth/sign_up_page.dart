@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-               SizedBox(
+                SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 Center(
@@ -87,38 +87,38 @@ class _SignUpPageState extends State<SignUpPage> {
                   text: 'Create Account',
                   onPressed: () async {
                     //calling the signup use case to create the user
-                    if(_formKey.currentState!.validate()){
+                    if (_formKey.currentState!.validate()) {
                       var result = await sl<SignupUseCase>().call(
-                      CreateUserReq(
-                        fullName: _fullName.text,
-                        email: _email.text,
-                        password: _password.text,
-                      ),
-                      // this is the parameter that is passed to the use case to create the user basically things that are needed atleast to create the user.
-                      params: CreateUserReq(
-                        fullName: _fullName.text.toString(),
-                        email: _email.text.toString(),
-                        password: _password.text.toString(),
-                      ),
-                    );
-                    // this is the fold when user is not created successfully and the error is shown to the user.
-                    result.fold(
-                      (l) {
-                        var snackBar = SnackBar(
-                          content: Text(l.toString()),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      // this is the success case where the user is created successfully and the user is redirected to the home page.
-                      (r) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const HomePage()),
-                        );
-                      },
-                    );
+                        CreateUserReq(
+                          fullName: _fullName.text,
+                          email: _email.text,
+                          password: _password.text,
+                        ),
+                        // this is the parameter that is passed to the use case to create the user basically things that are needed atleast to create the user.
+                        params: CreateUserReq(
+                          fullName: _fullName.text.toString(),
+                          email: _email.text.toString(),
+                          password: _password.text.toString(),
+                        ),
+                      );
+                      // this is the fold when user is not created successfully and the error is shown to the user.
+                      result.fold(
+                        (l) {
+                          var snackBar = SnackBar(
+                            content: Text(l.toString()),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        },
+                        // this is the success case where the user is created successfully and the user is redirected to the home page.
+                        (r) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const HomePage()),
+                          );
+                        },
+                      );
                     }
                   },
                 ),
@@ -195,7 +195,8 @@ class _SignUpPageState extends State<SignUpPage> {
         if (value == null || value.trim().isEmpty) {
           return 'Email is required';
         }
-        final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+        final emailRegex =
+            RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
         if (!emailRegex.hasMatch(value)) {
           return 'Enter a valid email';
         }
@@ -235,6 +236,20 @@ class _SignUpPageState extends State<SignUpPage> {
         }
         if (value.length < 6) {
           return 'Password must be at least 6 characters';
+        }
+        // Check for at least one uppercase letter
+        if (!value.contains(RegExp(r'[A-Z]'))) {
+          return 'Password must contain at least one uppercase letter';
+        }
+
+        // Check for at least one lowercase letter
+        if (!value.contains(RegExp(r'[a-z]'))) {
+          return 'Password must contain at least one lowercase letter';
+        }
+
+        // Check for at least one special character
+        if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+          return 'Password must contain at least one special character';
         }
         return null;
       },

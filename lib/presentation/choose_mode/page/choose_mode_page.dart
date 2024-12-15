@@ -69,95 +69,93 @@ class _ChooseModePageState extends State<ChooseModePage>
           _isDarkMode ? AppColors.darkBackground : AppColors.lightBackground,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            Text(
-              "Choose Mode",
-              style: TextStyle(
-                fontSize: 24,
-                color: _isDarkMode ? Colors.white : Colors.black,
-              ),
-            ),
-            // this is the lottie animation which is used to show the animation of the light mode to dark mode and vice versa
-            Lottie.asset(
-              AppAnimations.chooseModeAnimation,
-              controller: _controller,
-              onLoaded: (composition) {
-                _controller.duration = composition.duration;
-              },
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Light Mode Button
-                ElevatedButton(
-                  onPressed: !_isDarkMode
-                      ? null // Disable button if already in light mode
-                      : () {
-                          context
-                              .read<ThemeCubit>()
-                              .updateTheme(ThemeMode.light);
-                          _toggleTheme();
-                        },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.yellowAccent,
-                  ),
-                  child: const Text("Light Mode",
-                      style: TextStyle(color: Colors.black)),
-                ),
-
-                const SizedBox(height: 20),
-
-                // Dark Mode Button
-                ElevatedButton(
-                  onPressed: _isDarkMode
-                      ? null // Disable button if already in dark mode
-                      : () {
-                          context
-                              .read<ThemeCubit>()
-                              .updateTheme(ThemeMode.dark);
-                          _toggleTheme();
-                        },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _isDarkMode ? Colors.white : Colors.black,
-                  ),
-                  child: const Text(
-                    "Dark Mode",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-            // this is the button which is used to navigate to the signup or signin page
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SignupOrSigninPage()));
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              child: const Text(
-                'Continue',
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Choose Mode",
                 style: TextStyle(
-                  color: AppColors.lightBackground,
-                  fontSize: 20,
+                  fontSize: 24,
+                  color: _isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
-            ),
-          ],
+              // this is the lottie animation which is used to show the animation of the light mode to dark mode and vice versa
+              Lottie.asset(
+                AppAnimations.chooseModeAnimation,
+                controller: _controller,
+                onLoaded: (composition) {
+                  _controller.duration = composition.duration;
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Light Mode Button
+                  ElevatedButton(
+                    onPressed: !_isDarkMode
+                        ? null // Disable button if already in light mode
+                        : () {
+                            context
+                                .read<ThemeCubit>()
+                                .updateTheme(ThemeMode.light);
+                            _toggleTheme();
+                          },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.yellowAccent,
+                    ),
+                    child: const Text("Light Mode",
+                        style: TextStyle(color: Colors.black)),
+                  ),
+          
+                  // Dark Mode Button
+                  ElevatedButton(
+                    onPressed: _isDarkMode
+                        ? null // Disable button if already in dark mode
+                        : () {
+                            context
+                                .read<ThemeCubit>()
+                                .updateTheme(ThemeMode.dark);
+                            _toggleTheme();
+                          },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _isDarkMode ? Colors.white : Colors.black,
+                    ),
+                    child: const Text(
+                      "Dark Mode",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              // this is the button which is used to navigate to the signup or signin page
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignupOrSigninPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: const Text(
+                  'Continue',
+                  style: TextStyle(
+                    color: AppColors.lightBackground,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

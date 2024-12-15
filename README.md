@@ -52,16 +52,6 @@ flutter build apk --release
 ```
 The generated APK will be located in `build/app/outputs/flutter-apk/`.
 
-### Automating GitHub Releases
-
-This project is configured to automatically:
-
-1. Build the APK using GitHub Actions.
-2. Upload the APK to a public repository as a GitHub Release.
-
-Ensure you have:
-- A public repository to host the APK.
-- A `PUBLIC_REPO_TOKEN` secret set up in your private repository.
 
 ## Folder Structure
 

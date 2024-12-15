@@ -208,6 +208,12 @@ class _SignInPageState extends State<SignInPage> {
           ),
         ),
       ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'Email is required';
+        }
+        return null;
+      },
     );
   }
 }
