@@ -84,7 +84,7 @@ Automated testing is planned for future iterations.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the Creative Commons Attribution-NonCommercial (CC BY-NC) license.
 
 ## Contributing
 
